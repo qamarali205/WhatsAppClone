@@ -35,6 +35,9 @@ const Home = () => {
   setIsProfile(true);
 
  }
+ const handleCloseOpenProfile=()=>{
+  setIsProfile(false);
+ }
 
   return (
     <div className='relative'>
@@ -44,7 +47,7 @@ const Home = () => {
         <div className="left w-[30%] bg-[#e8e9ec] h-full">
           {/* proflie */}
 
-              {isProfile && <div className='w-full h-full'><Profile /></div>}
+              {isProfile && <div className='w-full h-full'><Profile handleCloseOpenProfile={handleCloseOpenProfile}/></div>}
               {/* home */}
             {!isProfile && <div className="w-full">
               
@@ -56,7 +59,7 @@ const Home = () => {
                         <p>userName</p>
                     </div>
                     <div className='space-x-3 flex text-xl'>
-                        <TbCircleDashed/>
+                        <TbCircleDashed onClick={()=> navigate("/status")} className='cursor-pointer'/>
                         <BiCommentDetail/>
                     </div>
                 </div>

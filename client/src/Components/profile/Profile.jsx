@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { BsArrowLeft, BsCheck2, BsPencil } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 
-const Profile = () => {
+const Profile = ({handleCloseOpenProfile}) => {
     const [flag, setFlag]=useState(false);
     const navigate=useNavigate();
     const [username,setUsername]=useState(null)
@@ -24,7 +24,7 @@ const Profile = () => {
   return (
     <div className='w-full h-full'>
         <div className='flex items-center space-x-10 bg-[#008069] text-white pt-16 px-10 pb-5'>
-            <BsArrowLeft onClick={handleNavigate} className='cursor-pointer text-2xl font-bold'/>
+            <BsArrowLeft onClick={handleCloseOpenProfile} className='cursor-pointer text-2xl font-bold'/>
             <p className='cursor-pointer font-semibold'>Profile</p>
         </div>   
              {/* update profile pic section  */}
