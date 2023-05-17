@@ -11,7 +11,7 @@ const verifyToken=()=>{
     })
 }
 
-const authenticate=async (req,res)=>{
+const authenticate=async (req,res,next)=>{
 
     if(!req.headers?.authorization){
         return res.status(400).send({message:"Please provide a Token"});

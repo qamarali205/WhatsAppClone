@@ -27,7 +27,7 @@ const userSchema =new mongoose.Schema({
    
 },{timestamps:true})
 
-userSchema.pre("save", function(nex){
+userSchema.pre("save", function(next){
     if(!this.isDirectModified("password")) return next();
 
     this.password=bycrypt.hashSync(this.password, 8);

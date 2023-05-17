@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "nodemon src/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.5.0",
     "mongoose": "^7.1.0",
     "nodemon": "^2.0.22"
   }
