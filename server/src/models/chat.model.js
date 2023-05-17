@@ -1,29 +1,30 @@
-const {defalut:mongoose}=require("mongoose");
+const {default:mongoose}=require("mongoose");
 
 const chatSchema=mongoose.Schema({
     chatName:{
         type:String,
-        trim:true
+        trim:true,
     },
     isGroupChat:{
         type:Boolean,
     },
     users:[{
-        type:mongoose.Schema.Types.objectId,
-        ref:"user"
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user",
     }],
     latestMessage:{
-        type:mongoose.Schema.Types.objectId,
-        ref:"message"
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"message",
     },
     groupAdmin:{
-        type:mongoose.Schema.Types.objectId,
-        ref:"user"
-    }
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user",
+    },
 
 },{
-    timestamp:true
+    timestamps:true
 });
 
 const Chat=mongoose.model("chat", chatSchema);
+
 module.exports=Chat;

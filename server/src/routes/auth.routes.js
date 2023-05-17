@@ -5,7 +5,7 @@ const { registerUser, loginUser } = require("../Controllers/auth.controller");
 const router=Router();
 
 router.post("/signup", registerUser)
-router.post("/signup", loginUser)
+router.post("/signin", loginUser)
 
 
 module.exports=router;
