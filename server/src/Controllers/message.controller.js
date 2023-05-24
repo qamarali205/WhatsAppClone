@@ -1,48 +1,61 @@
-const Chat = require("../models/chat.model");
-const Message = require("../models/message.model");
+const express = require("express");
+const Message = require("../models/message.modal");
+const User = require("../models/user.model");
+const Chat = require("../models/chat.modal");
+const aunthenticate = require("../middlewares/aunthenticate");
+const router = express.Router();
 
+//@description     Get all Messages
 
-const getAllMessage=async (req, res) =>{
-    try {
-        const chatId=req.params.chatId;
-        const isChat=await Chat.findById(chatId);
+const allMessages = async (req, res) => {
+  try {
+    const messages = await Message.find({ chat: req.params.chatId })
+      .populate("sender", "username fullname profilePic email")
+      .populate("chat");
+    res.json(messages);
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
+};
+router.get("/getall/:chatId", aunthenticate, allMessages);
 
-        if(!isChat){
-            return res.status(400).send({error:"chat not exist with id",chatId})
-        }
+//@description     Create New Message
+//@route           POST /api/Message/
+//@access          Protected
+const sendMessage = async (req, res) => {
+  const { content, chatId } = req.body;
+  const reqUser = await req.user;
+  if (!content || !chatId) {
+    console.log("Invalid data passed into request");
+    return res.status(400).send({message:"chatId and message are required"});
+  }
 
-        const getMessage=await Message.find({chat:req.params.chatId}).populate("sender", "-password").populate("chat");
+  var newMessage = {
+    sender: reqUser.user._id,
+    content: content,
+    chat: chatId,
+  };
 
-        return res.status(200).send(getMessage)
-        
-    } catch (error) {
-        return res.status(400).send({error:error.message})
-    }
-}
+  try {
+    var message = await Message.create(newMessage);
 
-const createMessage=async (req, res) =>{
-    const {content, chatId}=req.body;
+    message = await message.populate("sender", "username profilePic")
+    message = await message.populate("chat")
+    message = await User.populate(message, {
+      path: "chat.users",
+      select: "username profilePic email",
+    });
 
-    try {
-         
-         const reqUser=await req.user;
-         if(!content || !chatId){
-            return res.status(400).send({error:"content and chatId are required"})
-         }
+    await Chat.findByIdAndUpdate(req.body.chatId, { latestMessage: message });
 
-         let newMessage={
-            sender:reqUser.user._id,
-            content,
-            chat:chatId
-         }
+    res.json(message);
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
+};
 
-         const createdMessage=await Message.create(newMessage);
+router.post("/createnew", aunthenticate, sendMessage);
 
-         const fullMessage=await Message.findById(createMessage._id).populate("sender", "-password").populate("chat");
-        
-    } catch (error) {
-        return res.status(400).send({error:error.message});        
-    }
-}
-
-module.exports={getAllMessage, createMessage};
+module.exports = router;

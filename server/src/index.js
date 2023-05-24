@@ -1,36 +1,37 @@
-const express=require('express');
+const express = require("express");
+const app = express();
+const cors = require("cors");
 
-const app=express();
 
 app.use(express.json());
 
-app.get("/", (req,res)=>{
-    return res.send({message:"Welcome to whats App api"})
+app.use(
+  cors()
+);
+
+app.get("/", async (req,res) => {
+  return res.status(200).send("Whatsapp Backend Api Created By Qamar Ali")
 })
 
-//auth
-const authRoutes=require("./routes/auth.routes.js")
-app.use("/auth",authRoutes);
+const { register, login } = require("./controllers/auth");
+app.post("/register", register);
+app.post("/login", login);
 
-//user
-const userRoutes=require("./routes/user.routes.js");
-app.use("/users",userRoutes);
+const userController = require("./controllers/user.controller");
+
+
+app.use("/users", userController);
+
 //chat
+const chatController = require("./controllers/chat.controller");
+const messageController = require("./controllers/message.controller");
 
-const chatRoutes=require("./routes/chat.routes.js");
-app.use("/chats",chatRoutes);
+app.use("/chats",chatController);
+app.use('/messages', messageController);
 
+// status
+const statusController=require("./controllers/status.controller.js");
+app.use("/status",statusController);
 
-//message
+module.exports = app;
 
-const messageRoutes=require("./routes/message.routes.js");
-
-app.use("/messages",messageRoutes);
-
-
-
-
-
-
-
-module.exports=app;
