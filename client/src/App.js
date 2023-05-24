@@ -6,6 +6,7 @@ import Status from './components/Status/Status';
 import StoryViewer from './components/Status/StatusViewer';
 
 function App() {
+  console.log("run");
   return (
     <div className="">
 
