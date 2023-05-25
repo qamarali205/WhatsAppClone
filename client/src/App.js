@@ -1,9 +1,9 @@
-import Login from './Components/Registration/Login';
-import Signup from './Components/Registration/Signup';
+import Login from './components/Registration/Login';
+import Signup from './components/Registration/Signup';
 import { Routes, Route } from "react-router-dom";
-import HomePage from './Components/HomePage/HomePage';
-import Status from './Components/Status/Status';
-import StoryViewer from './Components/Status/StatusViewer';
+import HomePage from './components/HomePage/HomePage';
+import Status from './components/Status/Status';
+import StoryViewer from './components/Status/StatusViewer';
 
 function App() {
   console.log("run");
