@@ -47,8 +47,8 @@ const Profile = ({ handleBack }) => {
             const uploadPic = (pics) => {
               const data = new FormData();
               data.append("file", pics);
-              data.append("upload_preset", "Qamar");
-              data.append("cloud_name", "Ali");
+              data.append("upload_preset", "ashok21");
+              data.append("cloud_name", "zarmariya");
               fetch("https://api.cloudinary.com/v1_1/zarmariya/image/upload", {
                 method: "post",
                 body: data,
