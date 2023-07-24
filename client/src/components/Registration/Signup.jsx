@@ -58,7 +58,7 @@ const token = localStorage.getItem("token");
 
     <div>
       <div className="flex flex-col justify-center min-h-screen items-center">
-      <div className="w-[30%] p-10 shadow-md bg-white">
+      <div className="w-[40%] p-10 shadow-md bg-white">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <p className="mb-2">User Name</p>
