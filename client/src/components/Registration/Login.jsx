@@ -98,6 +98,16 @@ const Login = () => {
             signup
           </p>
         </div>
+        <div className="flex space-x-3 item-center mt-2">
+          <p className="">email</p>
+          <p className="text-blue-500 hover:text-blue-800 cursor-pointer"
+          >admin@gmail.com</p>
+        </div>
+        <div className="flex space-x-3 item-center mt-2">
+          <p className="">password</p>
+          <p className="text-blue-500 hover:text-blue-800 cursor-pointer"
+          >admin</p>
+        </div>
       </div>
      
       </div>
