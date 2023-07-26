@@ -42,6 +42,7 @@ const Profile = ({ handleBack }) => {
         <input
           type="file"
           id="imgInput"
+          accept="image/*"
           className="hidden"
           onChange={(e) => {
             const uploadPic = (pics) => {
