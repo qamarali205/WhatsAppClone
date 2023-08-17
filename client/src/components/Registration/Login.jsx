@@ -114,7 +114,7 @@ const Login = () => {
             signup
           </p>
         </div>
-        <h3>For Login Demo Id Password</h3>
+{/*         <h3>For Login Demo Id Password</h3>
         <div className="flex space-x-3 item-center mt-2">
           <p className="">Email-</p>
           <p className="text-blue-500 hover:text-blue-800">admin@gmail.com</p>
@@ -122,7 +122,7 @@ const Login = () => {
         <div className="flex space-x-3 item-center mt-2">
           <p className="">Password-</p>
           <p className="text-blue-500 hover:text-blue-800">admin</p>
-        </div>
+        </div> */}
       </div>
      
       </div>
