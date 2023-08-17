@@ -89,6 +89,16 @@ const Login = () => {
             />
           </div>
         </form>
+         <div>
+            <input
+              className="py-[0.7rem] px-3 w-full rounded-md bg-green-600 text-white mt-3"
+              type="Submit"
+              value={"Get Guest User Credentials"}
+              onClick={() => { setInputData.email("admin@gmail.com"); setInputData.password("admin"); }}
+
+              readOnly
+            />
+          </div>
         <div className="flex space-x-3 item-center mt-5">
           <p className="">Create New Account</p>
           <p
